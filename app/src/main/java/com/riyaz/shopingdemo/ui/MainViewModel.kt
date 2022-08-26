@@ -1,7 +1,5 @@
 package com.riyaz.shopingdemo.ui
 
-import android.app.Application
-import android.content.Context
 import androidx.lifecycle.*
 import com.riyaz.shopingdemo.model.ShoppingItem
 import com.riyaz.shopingdemo.model.ShoppingItemHeight
@@ -12,7 +10,7 @@ class MainViewModel(): ViewModel() {
     var shoppingItemList: List<ShoppingItem> = getShoppingItemDemoList()
 
     //initially the shopping item will have height equal to the screen width
-    private val _itemHeight = MutableLiveData<ShoppingItemHeight>(ShoppingItemHeight.WIDTH_FULL)
+    private val _itemHeight = MutableLiveData<ShoppingItemHeight>(ShoppingItemHeight.SCREEN_WIDTH_FULL)
     val itemHeight: LiveData<ShoppingItemHeight> get() = _itemHeight
 
     fun setItemHeight(height: ShoppingItemHeight){

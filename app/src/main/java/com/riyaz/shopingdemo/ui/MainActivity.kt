@@ -83,11 +83,11 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.width_half -> {
-                viewModel.setItemHeight(ShoppingItemHeight.WIDTH_HALF)
+                viewModel.setItemHeight(ShoppingItemHeight.SCREEN_WIDTH_HALF)
                 true
             }
             R.id.width_full -> {
-                viewModel.setItemHeight(ShoppingItemHeight.WIDTH_FULL)
+                viewModel.setItemHeight(ShoppingItemHeight.SCREEN_WIDTH_FULL)
                 true
             }
             else -> super.onOptionsItemSelected(item)
