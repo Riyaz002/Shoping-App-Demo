@@ -14,7 +14,7 @@ import com.riyaz.shopingdemo.model.ShoppingItemHeight
 //If there was a real list with lots of items that frequently changes I probably would have Used ListAdapter class with DiffUtil utility class
 class ShoppingItemAdapter() : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
     private var itemList = listOf<ShoppingItem>()
-    private var itemHeight = ShoppingItemHeight.WIDTH_HALF
+    private var itemHeight = ShoppingItemHeight.SCREEN_WIDTH_HALF
 
     @JvmName("setItemList1")
     fun setItemList(list: List<ShoppingItem>) {
@@ -43,11 +43,11 @@ class ShoppingItemAdapter() : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingI
         val lp = view.getLayoutParams()
 
         val partOfScreenWidth = when (itemHeight) {
-            ShoppingItemHeight.WIDTH_HALF -> {
+            ShoppingItemHeight.SCREEN_WIDTH_HALF -> {
                 Log.d("Shopping Adapter", "2")
                 2
             }
-            ShoppingItemHeight.WIDTH_FULL -> {
+            ShoppingItemHeight.SCREEN_WIDTH_FULL -> {
                 Log.d("Shopping Adapter", "1")
                 1
             }
