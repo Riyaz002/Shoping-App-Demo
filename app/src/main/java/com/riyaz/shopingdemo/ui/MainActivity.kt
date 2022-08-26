@@ -1,15 +1,17 @@
-package com.riyaz.shopingdemo
+package com.riyaz.shopingdemo.ui
 
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.riyaz.shopingdemo.adapter.ShoppingItemAdapter
+import com.riyaz.shopingdemo.R
+import com.riyaz.shopingdemo.ui.adapter.ShoppingItemAdapter
 import com.riyaz.shopingdemo.databinding.ActivityMainBinding
 import com.riyaz.shopingdemo.model.ShoppingItemHeight
 
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         //Initializing adapter for our recyclerview
         shoppingAdapter = ShoppingItemAdapter()
 
+        //filling the adapter with demo data
         shoppingAdapter.setItemList(viewModel.shoppingItemList)
 
         binding.recyclerView.adapter = shoppingAdapter
@@ -41,14 +44,21 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = layoutManager
         
         
-        //here, we are observing the itemHeight(height of the shopping item in the grid)
+        //here, we are observing the itemHeight(height of the shopping item in the grid) property in defined in the viewModel
         //it changes whenever we select different option from the overflow menu
+        /*NOTE: I added this feature(changing shopping-item-view height)
+          because I really liked the item height to be equal to the screen width
+          but according to the assignment the height should be half the screen width
+          so i created an overflow menu which allow us to choose the height
+         */
         viewModel.itemHeight.observe(this, Observer { selectedHeight ->
             shoppingAdapter.setItemHeight(selectedHeight)
 
             //again, the below function is only to represent layout with different items heights
             forceRedrawRecyclerView(binding)
         })
+
+        Toast.makeText(this, "item names are randomly picked from internet. Please, ignore them.", Toast.LENGTH_SHORT).show()
     }
 
     private fun forceRedrawRecyclerView(binding: ActivityMainBinding?) {

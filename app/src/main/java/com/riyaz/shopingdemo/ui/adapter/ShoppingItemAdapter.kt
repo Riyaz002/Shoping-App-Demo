@@ -1,4 +1,4 @@
-package com.riyaz.shopingdemo.adapter
+package com.riyaz.shopingdemo.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.riyaz.shopingdemo.R
 import com.riyaz.shopingdemo.model.ShoppingItem
 import com.riyaz.shopingdemo.model.ShoppingItemHeight
 
-//If there was a real list with lots of items that frequently I probably would have Used ListAdapter class with DiffUtil utility class
+//If there was a real list with lots of items that frequently changes I probably would have Used ListAdapter class with DiffUtil utility class
 class ShoppingItemAdapter() : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
     private var itemList = listOf<ShoppingItem>()
     private var itemHeight = ShoppingItemHeight.WIDTH_HALF
@@ -35,13 +35,11 @@ class ShoppingItemAdapter() : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingI
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.shopping_item_view, parent, false)
-//        val height = parent.measuredHeight/2
-//        view.minimumHeight = height
-        setItemHeight(view, parent)
+        setViewHeight(view, parent)
         return ShoppingItemViewHolder(view)
     }
 
-    private fun setItemHeight(view: View, parent: ViewGroup) {
+    private fun setViewHeight(view: View, parent: ViewGroup) {
         val lp = view.getLayoutParams()
 
         val partOfScreenWidth = when (itemHeight) {
@@ -61,6 +59,7 @@ class ShoppingItemAdapter() : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingI
 
     override fun onBindViewHolder(holder: ShoppingItemViewHolder, position: Int) {
         holder.image.setImageResource(itemList[position].itemImage)
+        //holder.image.setBackgroundResource(itemList[position].itemImage)
         holder.title.text = itemList[position].title
         holder.price.text = "₹ ${itemList[position].price}"
     }

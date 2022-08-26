@@ -1,15 +1,14 @@
-package com.riyaz.shopingdemo
+package com.riyaz.shopingdemo.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.*
 import com.riyaz.shopingdemo.model.ShoppingItem
 import com.riyaz.shopingdemo.model.ShoppingItemHeight
 import com.riyaz.shopingdemo.model.getShoppingItemDemoList
 
 
-class MainViewModel: ViewModel() {
+class MainViewModel(): ViewModel() {
     var shoppingItemList: List<ShoppingItem> = getShoppingItemDemoList()
 
     //initially the shopping item will have height equal to the screen width
@@ -28,7 +27,8 @@ class MainViewModel: ViewModel() {
     }
 }
 
-class MainActivityViewModelFactory: ViewModelProvider.Factory{
+//Factory for MainViewModel
+class MainActivityViewModelFactory(): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(MainViewModel::class.java)){
             return MainViewModel() as T
